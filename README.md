@@ -7,3 +7,9 @@
 
 * YoutubeAPIを使って，サムネイルクリックで動画を非同期に切り替える
 
+## 実行方法
+```
+npm install
+npm start
+```
+
