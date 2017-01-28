@@ -1,14 +1,14 @@
 //Create newComponent
 //some <html>
+import _ from 'lodash';
 import React,{ Component } from 'react';
 import ReactDOM from 'react-dom';
 import SearchBar from './components/search_bar';
 import YTSearch from 'youtube-api-search';
 import VideoList from './components/video_list';
 import VideoDetail from './components/video_detail';
-
 //input youtube APIKey
-const API_KEY = 'AIzaSyAW4L6aC9v6ApCYRSPNiK9I_eCl-s3CYt0';
+const API_KEY = '';
 
 class App extends Component {
     constructor(props){
@@ -34,14 +34,17 @@ class App extends Component {
     }
 
     render(){
+
+    const videoSearch = _.debounce((term) => {this.videoSearch(term)} ,300);
+
+
     return (
         <div>
-            <SearchBar onSearchTermChange={term => this.videoSearch(term)} />
+            <SearchBar onSearchTermChange={videoSearch} />
             <VideoDetail video={this.state.selectedVideo} />
             <VideoList  
-            onVideoSelect={selectedVideo => this.setState({selectedVideo})}
-            videos={this.state.videos} 
-            />
+                onVideoSelect={selectedVideo => this.setState({selectedVideo})}
+                videos={this.state.videos}/>
         </div>
         );
     }
